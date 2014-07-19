@@ -76,7 +76,7 @@ func (d *euchreDeck) Deal() []Hand {
 	// Euchre has 4 hands. Each hand is dealt in 2 rounds, usually 2 and 3
 	// cards in whatever order.
 	idx := 0
-	h := make([]Hand,4)
+	h := make([]Hand,5)
 	// Create each hand and randomly deal 2 or 3 cards in the first round of deal
 	for i := 0; i < 4; i++ {
 		h[i].Cards = make([]card,2)
@@ -99,6 +99,13 @@ func (d *euchreDeck) Deal() []Hand {
 			h[i].Cards = append(h[i].Cards, d.Deck.Cards[idx])
 			idx++
 		}
+	}
+
+	h[4].Cards = []card{
+		d.Deck.Cards[20],
+		d.Deck.Cards[21],
+		d.Deck.Cards[22],
+		d.Deck.Cards[23],
 	}
 
 	return h
@@ -139,7 +146,7 @@ func main() {
 	d.Shuffle()
 	h := []Hand{}
 	h = d.Deal()
-	fmt.Printf("%v", h)
-	d.Print()
-	
+	for i := 0; i < len(h); i++ {
+		fmt.Printf("%v\n",h[i])
+	}
 }
