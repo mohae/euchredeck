@@ -1,4 +1,4 @@
-bauerpower
+euchredeck
 ==========
 
 Euchre Baby!
@@ -8,7 +8,7 @@ A simple implementation for Euchre.
 Well, not really, but it will be.
 
 ##Current Functionality
-Currently implements a generic implementation of the Fisher-Yates shuffle for a deck of cards. 
+Currently implements a generic implementation of the Fisher-Yates shuffle for a deck of cards and it deals a euchre hand.
 
 ##Euchre basics
 Euchre is a trick based, trump card game for four players played with a short deck, 24 cards. Players each form a side of a square with opposite sides oof the square being teammates. Games are played to 10 points.
