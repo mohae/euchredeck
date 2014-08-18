@@ -3,30 +3,30 @@
 package main
 
 import (
-	"fmt"	
-	"math/rand"		
+	"fmt"
+	"math/rand"
 	"strconv"
 	"time"
 )
 
 // Constants for suits.
 const (
-    _ = iota
-    Club
-    Diamond
-    Heart
-    Spade
+	_ = iota
+	Club
+	Diamond
+	Heart
+	Spade
 )
 
 // Constants for face cards and Ace.
 const (
-	Jack = 11
+	Jack  = 11
 	Queen = 12
-	King = 13
-	Ace = 14
+	King  = 13
+	Ace   = 14
 )
 
-func init () {
+func init() {
 	// set the seed
 	rand.Seed(time.Now().UTC().UnixNano())
 }
@@ -39,14 +39,14 @@ type decker interface {
 // Deck is a deck of cards whose size is limited by Deck.size.
 type Deck struct {
 	// size of the deck
-	size int 
+	size int
 	// Cards are the actual cards in the deck.
 	Cards []card
 }
 
 // card is a single card within a deck. Cards consist of a suit and a value.
 type card struct {
-	suit int
+	suit  int
 	value int
 }
 
@@ -54,14 +54,14 @@ type card struct {
 // and popularized by Knuth
 func (d *Deck) Shuffle() error {
 	for i := 0; i < d.size; i++ {
-		r := rand.Intn(i+1)
+		r := rand.Intn(i + 1)
 		if i != r {
 			d.Cards[r], d.Cards[i] = d.Cards[i], d.Cards[r]
 		}
-	}	
+	}
 	return nil
 }
-	
+
 // Deck.Print prints the deck of cards.
 func (d *Deck) Print() error {
 	str := ""
@@ -72,7 +72,7 @@ func (d *Deck) Print() error {
 		} else {
 			str += ", "
 		}
-		 str += strconv.Itoa(d.Cards[i].suit) + ":" + strconv.Itoa(d.Cards[i].value)
+		str += strconv.Itoa(d.Cards[i].suit) + ":" + strconv.Itoa(d.Cards[i].value)
 	}
 	if str != "" {
 		fmt.Println(str)
@@ -100,19 +100,19 @@ func (d *euchreDeck) Deal() []Hand {
 	// Euchre has 4 hands. Each hand is dealt in 2 rounds, usually 2 and 3
 	// cards in whatever order.
 	idx := 0
-	h := make([]Hand,5)
+	h := make([]Hand, 5)
 	// Create each hand and randomly deal 2 or 3 cards in the first round of deal
 	for i := 0; i < 4; i++ {
-		h[i].Cards = make([]card,2)
-		h[i].Cards[0] = d.Deck.Cards[idx];
-		h[i].Cards[1] = d.Deck.Cards[idx + 1];
+		h[i].Cards = make([]card, 2)
+		h[i].Cards[0] = d.Deck.Cards[idx]
+		h[i].Cards[1] = d.Deck.Cards[idx+1]
 		idx += 2
 		if rand.Intn(2) == 1 {
 			h[i].Cards = append(h[i].Cards, d.Deck.Cards[idx])
 			idx++
 		}
 	}
-	
+
 	// Deal the rest on the second round.
 	for i := 0; i < 4; i++ {
 		x := len(h[i].Cards)
@@ -147,25 +147,25 @@ func newEuchreDeck() euchreDeck {
 			{1, 11},
 			{1, 12},
 			{1, 13},
-			{1, 14},				
+			{1, 14},
 			{2, 9},
 			{2, 10},
 			{2, 11},
 			{2, 12},
 			{2, 13},
-			{2, 14},				
+			{2, 14},
 			{3, 9},
 			{3, 10},
 			{3, 11},
 			{3, 12},
 			{3, 13},
-			{3, 14},				
+			{3, 14},
 			{4, 9},
 			{4, 10},
 			{4, 11},
 			{4, 12},
 			{4, 13},
-			{4, 14},				
+			{4, 14},
 		},
 	}}
 }
@@ -179,8 +179,6 @@ func main() {
 	h := []Hand{}
 	h = d.Deal()
 	for i := 0; i < len(h); i++ {
-		fmt.Printf("%v\n",h[i])
+		fmt.Printf("%v\n", h[i])
 	}
 }
-
-
