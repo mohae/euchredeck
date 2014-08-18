@@ -20,10 +20,13 @@ const (
 
 // Constants for face cards and Ace.
 const (
-	Jack  = 11
-	Queen = 12
-	King  = 13
-	Ace   = 14
+	_ = iota + 8
+	Nine
+	Ten
+	Jack
+	Queen
+	King
+	Ace
 )
 
 func init() {
@@ -138,36 +141,39 @@ func (d *euchreDeck) Deal() []Hand {
 }
 
 // newEuchreDeck initializes a euchre deck and returns it. This deck is not
-// shuffleld. Ace = 14, King = 13, etc.
+// shuffled.
 func newEuchreDeck() euchreDeck {
-	return euchreDeck{Deck: Deck{size: 24,
-		Cards: []card{
-			{1, 9},
-			{1, 10},
-			{1, 11},
-			{1, 12},
-			{1, 13},
-			{1, 14},
-			{2, 9},
-			{2, 10},
-			{2, 11},
-			{2, 12},
-			{2, 13},
-			{2, 14},
-			{3, 9},
-			{3, 10},
-			{3, 11},
-			{3, 12},
-			{3, 13},
-			{3, 14},
-			{4, 9},
-			{4, 10},
-			{4, 11},
-			{4, 12},
-			{4, 13},
-			{4, 14},
+	return euchreDeck{
+		Deck: Deck{
+			size: 24,
+			Cards: []card{
+				{Club, Nine},
+				{Club, Ten},
+				{Club, Jack},
+				{Club, Queen},
+				{Club, King},
+				{Club, Ace},
+				{Diamond, Nine},
+				{Diamond, Ten},
+				{Diamond, Jack},
+				{Diamond, Queen},
+				{Diamond, King},
+				{Diamond, Ace},
+				{Heart, Nine},
+				{Heart, Ten},
+				{Heart, Jack},
+				{Heart, Queen},
+				{Heart, King},
+				{Heart, Ace},
+				{Spade, Nine},
+				{Spade, Ten},
+				{Spade, Jack},
+				{Spade, Queen},
+				{Spade, King},
+				{Spade, Ace},
+			},
 		},
-	}}
+	}
 }
 
 // Main gets a new euchre deck, shuffles it, and deals the cards.
