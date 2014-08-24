@@ -206,7 +206,13 @@ func main() {
 	d.ifaceToCards(shuffled)
 	h := []Hand{}
 	h = d.Deal()
+
 	for i := 0; i < len(h); i++ {
-		fmt.Printf("%v\n", h[i])
+		if i == 4 {
+			fmt.Printf("Kitty:\t\t%v\n", h[i])
+			fmt.Printf("Trump Offer:\t%v\n", h[i].Cards[0])
+		} else {
+			fmt.Printf("Hand %d:\t\t%v\n", i + 1, h[i])
+		}
 	}
 }
