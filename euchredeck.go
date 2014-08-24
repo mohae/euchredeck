@@ -7,6 +7,8 @@ import (
 	"math/rand"
 	"strconv"
 	"time"
+
+	"github.com/mohae/shuffler"
 )
 
 // Constants for suits.
@@ -140,6 +142,23 @@ func (d *euchreDeck) Deal() []Hand {
 	return h
 }
 
+// convert a slice of cards to a slice of interfaces
+func (d *euchreDeck) cardsToIface() []interface{} {
+	ret := make([]interface{}, len(d.Cards))
+
+	for i, v := range d.Cards {
+		ret[i] = interface{}(v)
+	}
+
+	return ret
+}
+
+// convert a slice of interface to a slice of cards
+func (d *euchreDeck) ifaceToCards(iface []interface{}) {
+	for i, v := range iface {
+		d.Cards[i] = v.(card)
+	}
+}
 // newEuchreDeck initializes a euchre deck and returns it. This deck is not
 // shuffled.
 func newEuchreDeck() euchreDeck {
@@ -181,7 +200,10 @@ func newEuchreDeck() euchreDeck {
 func main() {
 	fmt.Println("Hello, here are your hands, after shuffling:")
 	d := newEuchreDeck()
-	d.Shuffle()
+//	d.Shuffle()
+	iCards := d.cardsToIface()
+	shuffled := shuffler.FisherYates((iCards))
+	d.ifaceToCards(shuffled)
 	h := []Hand{}
 	h = d.Deal()
 	for i := 0; i < len(h); i++ {
