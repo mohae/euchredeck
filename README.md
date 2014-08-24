@@ -10,7 +10,7 @@ Well, not really, its more of a crude shuffler and dealer for Euchre sized decks
 ##Current Functionality
 Currently creates a Euchre deck, shuffles it, and deals it.
 
-The shuffle is an implementation of Fisher-Yates from github.com/mohae/shuffler
+The shuffle is an implementation of Fisher-Yates from https://github.com/mohae/shuffler
 
 ##Euchre basics
 Euchre is a trick based, trump card game for four players played with a short deck, 24 cards. Players each form a side of a square with opposite sides oof the square being teammates. Games are played to 10 points.
