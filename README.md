@@ -5,10 +5,12 @@ Euchre Baby!
 
 A simple implementation for Euchre.
 
-Well, not really, but it will be.
+Well, not really, its more of a crude shuffler and dealer for Euchre sized decks and Euchre hands. It probably won't have an AI or a GUI, as I don't feel like writing a card gui in Go atm. There's better languages for that.
 
 ##Current Functionality
-Currently implements a generic implementation of the Fisher-Yates shuffle for a deck of cards and it deals a euchre hand.
+Currently creates a Euchre deck, shuffles it, and deals it.
+
+The shuffle is an implementation of Fisher-Yates from github.com/mohae/shuffler
 
 ##Euchre basics
 Euchre is a trick based, trump card game for four players played with a short deck, 24 cards. Players each form a side of a square with opposite sides oof the square being teammates. Games are played to 10 points.
